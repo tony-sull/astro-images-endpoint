@@ -20,7 +20,7 @@ export const get: APIRoute = async ({ request, params }) => {
         return new Response(outputBuffer, {
             headers: {
                 'content-length': Buffer.byteLength(outputBuffer).toString(),
-                'content-type': lookup(src),
+                'content-type': 'application/octet-stream',
                 // 'cache-control': 'max-age:360000'
             }
         })

@@ -24,12 +24,12 @@ export const get: APIRoute = async ({ request, params }) => {
         const inputBuffer = Buffer.from(await inputRes.arrayBuffer())
         console.log('got buffer')
 
-        const outputBuffer = await sharp(inputBuffer).resize(400).jpeg({ mozjpeg: true }).toBuffer()
-        console.log('got sharp result', Buffer.byteLength(outputBuffer))
+        //const outputBuffer = await sharp(inputBuffer).resize(400).jpeg({ mozjpeg: true }).toBuffer()
+        //console.log('got sharp result', Buffer.byteLength(outputBuffer))
 
-        return new Response(outputBuffer, {
+        return new Response(inputBuffer, {
             headers: {
-                'content-length': Buffer.byteLength(outputBuffer).toString(),
+                'content-length': Buffer.byteLength(inputBuffer).toString(),
                 'content-type': lookup(src),
                 // 'cache-control': 'max-age:360000'
             }

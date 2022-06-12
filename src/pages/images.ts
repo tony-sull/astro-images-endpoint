@@ -1,4 +1,5 @@
 import sharp from 'sharp'
+import { lookup } from 'mime-types'
 import type { APIRoute } from 'astro'
 
 export const get: APIRoute = async ({ request, params }) => {
@@ -18,7 +19,12 @@ export const get: APIRoute = async ({ request, params }) => {
 
         const result = await sharp(inputBuffer).resize(400).jpeg({ mozjpeg: true }).toBuffer()
 
-        return new Response(result)
+        return new Response(result, {
+            headers: {
+                'content-type': lookup(src),
+                // 'cache-control': 'max-age:360000'
+            }
+        })
     } catch (err) {
         console.error(err)
     }

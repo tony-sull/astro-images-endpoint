@@ -6,6 +6,7 @@ export const get: APIRoute = async ({ request, params }) => {
     try {
         const url = new URL(request.url)
         const src = url.searchParams.get('url').replace(/^\//, '')
+        console.log('/image?url', src)
         
         const href = !src.startsWith('http') ? new URL(src, url.origin) : new URL(src)
 

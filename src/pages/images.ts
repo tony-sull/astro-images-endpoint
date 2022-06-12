@@ -6,9 +6,11 @@ export const get: APIRoute = async ({ request, params }) => {
     try {
         const url = new URL(request.url)
         const src = url.searchParams.get('url').replace(/^\//, '')
-        console.log('/image?url', src)
+        console.log('src', src)
         
         const href = !src.startsWith('http') ? new URL(src, url.origin) : new URL(src)
+
+        console.log('href', href.toString())
 
         const inputRes = await fetch(href.toString())
 
@@ -16,9 +18,13 @@ export const get: APIRoute = async ({ request, params }) => {
             return new Response(`"${src}" not found`, { status: 404 })
         }
 
+        console.log('got inputRes', inputRes.status, inputRes.statusText)
+
         const inputBuffer = Buffer.from(await inputRes.arrayBuffer())
+        console.log('got buffer')
 
         const result = await sharp(inputBuffer).resize(400).jpeg({ mozjpeg: true }).toBuffer()
+        console.log('got sharp result')
 
         return new Response(result, {
             headers: {

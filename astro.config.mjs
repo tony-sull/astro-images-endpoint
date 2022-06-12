@@ -8,6 +8,9 @@ export default defineConfig({
   adapter: netlify(),
   integrations: [preact()],
   vite: {
-    plugins: [imagetools()]
+    plugins: [imagetools()],
+    ssr: {
+      external: ['@squoosh/lib']
+    }
   }
 });

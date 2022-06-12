@@ -1,8 +1,7 @@
+import sharp from 'sharp'
 import { lookup } from 'mime-types'
-import { ImagePool } from '@squoosh/lib'
 import type { APIRoute } from 'astro'
 
-/*
 export const get: APIRoute = async ({ request, params }) => {
     try {
         const url = new URL(request.url)
@@ -33,8 +32,8 @@ export const get: APIRoute = async ({ request, params }) => {
         body: `Hello, ${params.slug}`
     }
 }
-*/
 
+/*
 export const get: APIRoute = async({ request, params }) => {
     try {
         const url = new URL(request.url)
@@ -86,4 +85,4 @@ export const get: APIRoute = async({ request, params }) => {
 
         return new Response(err.toString(), { status: 500 })
     }
-}
+}*/

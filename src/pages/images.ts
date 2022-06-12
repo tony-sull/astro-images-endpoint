@@ -1,3 +1,4 @@
+import * as fs from 'fs/promises'
 import sharp from 'sharp'
 import { lookup } from 'mime-types'
 import type { APIRoute } from 'astro'
@@ -15,12 +16,13 @@ export const get: APIRoute = async ({ request, params }) => {
         }
 
         const inputBuffer = Buffer.from(await inputRes.arrayBuffer())
-        const outputBuffer = await sharp(inputBuffer).resize(400).toBuffer()
+        await sharp(inputBuffer).resize(400).toFile('temp.png')
 
-        return new Response(outputBuffer, {
+        const binary = await fs.readFile('temp.png')
+
+        return new Response(binary, {
             headers: {
-                'content-length': Buffer.byteLength(outputBuffer).toString(),
-                'content-type': 'application/octet-stream',
+                'content-type': lookup('temp.png'),
                 // 'cache-control': 'max-age:360000'
             }
         })

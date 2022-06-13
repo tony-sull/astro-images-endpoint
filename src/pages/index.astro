@@ -75,11 +75,11 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
 				</section>
 				<section>
 					<h2>With `vite-imagetools`</h2>
-					<img src={Image} />
+					<img width="400" height="300" src={Image} />
 				</section>
 				<section>
 					<h2>With `/images` endpoint</h2>
-					<img src='/images?url=/assets/blog/introducing-astro.jpg' />
+					<img width="400" height="300" src='/images?src=assets/blog/introducing-astro.jpg' />
 				</section>
 			</main>
 		</div>

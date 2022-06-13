@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import preact from '@astrojs/preact';
-import netlify from "@astrojs/netlify/functions";
+import node from '@astrojs/node';
+import netlify from '@astrojs/netlify/functions';
 import {imagetools} from 'vite-imagetools';
 
 // https://astro.build/config

@@ -59,9 +59,6 @@ export const get: APIRoute = async ({ request, params }) => {
         })
     } catch (err) {
         console.error(err)
-    }
-
-    return {
-        body: `Hello, ${params.slug}`
+        return new Response(`Server Error: ${err.toString()}`, { status: 500 })
     }
 }
